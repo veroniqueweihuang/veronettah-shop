@@ -5,12 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shirt 01 ⸺ Veronetta H.</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'Avenir', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
       line-height: 1.6;
@@ -20,8 +16,7 @@
 
     header {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       padding: 25px 50px;
       display: flex;
@@ -50,22 +45,12 @@
     }
 
     .nav-left a:hover, .nav-right a:hover { opacity: 0.5; }
-
     .separator { color: #c9c5bd; font-weight: 300; }
-
     .logo-container { text-align: center; }
     .logo-container img { height: 40px; }
+    .nav-right .shipping-info { font-size: 10px; color: #8a8a8a; letter-spacing: 1px; }
 
-    .nav-right .shipping-info {
-      font-size: 10px;
-      color: #8a8a8a;
-      letter-spacing: 1px;
-    }
-
-    main {
-      margin-top: 90px;
-      padding: 60px 40px;
-    }
+    main { margin-top: 90px; padding: 60px 40px; }
 
     .product-container {
       display: grid;
@@ -75,17 +60,8 @@
       margin: 0 auto;
     }
 
-    .product-images {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .product-images img {
-      width: 100%;
-      height: auto;
-      border: 1px solid #000;
-    }
+    .product-images { display: flex; flex-direction: column; gap: 20px; }
+    .product-images img { width: 100%; height: auto; border: 1px solid #000; }
 
     .product-details {
       position: sticky;
@@ -107,12 +83,11 @@
     }
 
     .product-subtitle {
-      font-size: 12px;
+      font-size: 13px;
       color: #6a6a6a;
       margin-bottom: 30px;
       line-height: 1.9;
       letter-spacing: 0;
-      text-align: left;
     }
 
     .feeling-tags {
@@ -146,11 +121,7 @@
       color: #3a3a3a;
     }
 
-    .size-options {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+    .size-options { display: flex; gap: 12px; flex-wrap: wrap; }
 
     .size-option {
       padding: 12px 24px;
@@ -162,13 +133,11 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       font-weight: 500;
+      font-family: 'Avenir', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
     }
 
     .size-option:hover,
-    .size-option.selected {
-      background: #3a3a3a;
-      color: #fefdfb;
-    }
+    .size-option.selected { background: #3a3a3a; color: #fefdfb; }
 
     .add-to-cart {
       width: 100%;
@@ -197,13 +166,8 @@
     }
 
     /* ACCORDION */
-    .accordion {
-      border-top: 1px solid #e3ddce;
-    }
-
-    .accordion-item {
-      border-bottom: 1px solid #e3ddce;
-    }
+    .accordion { border-top: 1px solid #e3ddce; }
+    .accordion-item { border-bottom: 1px solid #e3ddce; }
 
     .accordion-trigger {
       width: 100%;
@@ -234,19 +198,15 @@
       flex-shrink: 0;
     }
 
-    .accordion-item.open .accordion-icon {
-      transform: rotate(45deg);
-    }
+    .accordion-item.open .accordion-icon { transform: rotate(45deg); }
 
     .accordion-body {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.35s ease;
+      transition: max-height 0.35s ease;
     }
 
-    .accordion-item.open .accordion-body {
-      max-height: 300px;
-    }
+    .accordion-item.open .accordion-body { max-height: 400px; }
 
     .accordion-content {
       font-size: 12px;
@@ -254,6 +214,135 @@
       line-height: 2;
       letter-spacing: 0;
       padding-bottom: 18px;
+    }
+
+    /* SIZE GUIDE LINK inside accordion */
+    .size-guide-link {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 11px;
+      color: #3a3a3a;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: 'Avenir', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    .size-guide-link:hover { opacity: 0.5; }
+
+    /* SIZE GUIDE MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: #fefdfb;
+      border: 1px solid #000;
+      max-width: 640px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 50px 44px;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 22px;
+      font-weight: 300;
+      color: #aaa;
+      line-height: 1;
+      transition: color 0.2s;
+      font-family: 'Avenir', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .modal-close:hover { color: #3a3a3a; }
+
+    .modal-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #3a3a3a;
+      margin-bottom: 8px;
+    }
+
+    .modal-note {
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 0.5px;
+      margin-bottom: 30px;
+    }
+
+    .size-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .size-table th {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+      color: #3a3a3a;
+      padding: 10px 12px;
+      text-align: center;
+      border-bottom: 1px solid #e3ddce;
+      background: #f5f3ee;
+    }
+
+    .size-table th:first-child { text-align: left; }
+
+    .size-table td {
+      padding: 12px;
+      text-align: center;
+      color: #6a6a6a;
+      border-bottom: 1px solid #f0ede6;
+      font-size: 12px;
+    }
+
+    .size-table td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: #3a3a3a;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .size-table tr:last-child td { border-bottom: none; }
+    .size-table tr:hover td { background: #faf8f4; }
+
+    .modal-fit-note {
+      margin-top: 24px;
+      font-size: 11px;
+      color: #aaa;
+      line-height: 1.8;
+      padding-top: 20px;
+      border-top: 1px solid #e3ddce;
     }
 
     /* INSPIRATION SECTION */
@@ -264,10 +353,7 @@
       background: #e3ddce;
     }
 
-    .story-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .story-container { max-width: 1200px; margin: 0 auto; }
 
     .story-image {
       width: 100%;
@@ -276,12 +362,8 @@
       display: block;
     }
 
-    /* RELATED PRODUCTS */
-    .related-products {
-      margin-top: 60px;
-      padding: 80px 40px;
-      background: #ede8db;
-    }
+    /* RELATED */
+    .related-products { margin-top: 60px; padding: 80px 40px; background: #ede8db; }
 
     .related-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
@@ -301,41 +383,13 @@
       margin: 0 auto;
     }
 
-    .related-item {
-      background: #fefdfb;
-      border: 1px solid #000;
-      transition: all 0.4s ease;
-    }
-
-    .related-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    }
-
-    .related-item a {
-      text-decoration: none;
-      color: #3a3a3a;
-      display: block;
-    }
-
-    .related-item-image {
-      overflow: hidden;
-      background: #e3ddce;
-      aspect-ratio: 3/4;
-    }
-
-    .related-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-
+    .related-item { background: #fefdfb; border: 1px solid #000; transition: all 0.4s ease; }
+    .related-item:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+    .related-item a { text-decoration: none; color: #3a3a3a; display: block; }
+    .related-item-image { overflow: hidden; background: #e3ddce; aspect-ratio: 3/4; }
+    .related-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
     .related-item:hover img { transform: scale(1.05); }
-
-    .related-item-info {
-      padding: 25px;
-    }
+    .related-item-info { padding: 25px; }
 
     .related-item h3 {
       font-family: 'Cormorant Garamond', Georgia, serif;
@@ -347,13 +401,7 @@
       color: #3a3a3a;
     }
 
-    .related-item p {
-      font-size: 12px;
-      color: #6a6a6a;
-      line-height: 1.8;
-      margin-bottom: 15px;
-      letter-spacing: 0;
-    }
+    .related-item p { font-size: 12px; color: #6a6a6a; line-height: 1.8; margin-bottom: 15px; }
 
     .related-item .price {
       font-family: 'Cormorant Garamond', Georgia, serif;
@@ -377,6 +425,7 @@
       .story-section, .related-products { padding: 60px 20px; }
       .nav-left, .nav-right { font-size: 10px; gap: 12px; }
       .nav-right .shipping-info { display: none; }
+      .modal { padding: 40px 24px; }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
@@ -439,8 +488,7 @@
 
           <div class="accordion-item">
             <button class="accordion-trigger" onclick="toggleAccordion(this)">
-              Details
-              <span class="accordion-icon">+</span>
+              Details <span class="accordion-icon">+</span>
             </button>
             <div class="accordion-body">
               <div class="accordion-content">
@@ -455,8 +503,7 @@
 
           <div class="accordion-item">
             <button class="accordion-trigger" onclick="toggleAccordion(this)">
-              Care
-              <span class="accordion-icon">+</span>
+              Care <span class="accordion-icon">+</span>
             </button>
             <div class="accordion-body">
               <div class="accordion-content">
@@ -471,8 +518,20 @@
 
           <div class="accordion-item">
             <button class="accordion-trigger" onclick="toggleAccordion(this)">
-              Shipping
-              <span class="accordion-icon">+</span>
+              Size Guide <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-content">
+                All measurements in centimetres.<br>
+                This shirt is cut oversized — size down if you prefer a closer fit.<br><br>
+                <button class="size-guide-link" onclick="openModal()">View full size chart →</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+              Shipping <span class="accordion-icon">+</span>
             </button>
             <div class="accordion-body">
               <div class="accordion-content">
@@ -487,7 +546,7 @@
       </div>
     </div>
 
-    <!-- INSPIRATION SECTION — replace src with collage images when ready -->
+    <!-- INSPIRATION — replace src with collage images when ready -->
     <div class="story-section">
       <div class="story-container">
         <img src="shirt-01.jpg" alt="Inspiration" class="story-image">
@@ -499,9 +558,7 @@
       <div class="related-grid">
         <div class="related-item">
           <a href="shirt-02.html">
-            <div class="related-item-image">
-              <img src="shirt-02.jpg" alt="Shirt 02">
-            </div>
+            <div class="related-item-image"><img src="shirt-02.jpg" alt="Shirt 02"></div>
             <div class="related-item-info">
               <h3>Shirt 02</h3>
               <p>Contemporary sophistication for the discerning individual. A silhouette that speaks of quiet confidence and understated luxury.</p>
@@ -511,9 +568,7 @@
         </div>
         <div class="related-item">
           <a href="shirt-03.html">
-            <div class="related-item-image">
-              <img src="shirt-03.jpg" alt="Shirt 03">
-            </div>
+            <div class="related-item-image"><img src="shirt-03.jpg" alt="Shirt 03"></div>
             <div class="related-item-info">
               <h3>Shirt 03</h3>
               <p>A statement in simplicity. Exceptional fabric meets architectural precision. This is the piece that transforms moments into memories.</p>
@@ -524,6 +579,75 @@
       </div>
     </div>
   </main>
+
+  <!-- SIZE GUIDE MODAL -->
+  <div class="modal-overlay" id="sizeModal" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-title">Size Guide</div>
+      <div class="modal-note">All measurements in centimetres. Measure over light clothing.</div>
+
+      <table class="size-table">
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Shoulder</th>
+            <th>Bust</th>
+            <th>Waist</th>
+            <th>Hip</th>
+            <th>Length</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>XS</td>
+            <td>38</td>
+            <td>84</td>
+            <td>66</td>
+            <td>90</td>
+            <td>72</td>
+          </tr>
+          <tr>
+            <td>S</td>
+            <td>39.5</td>
+            <td>88</td>
+            <td>70</td>
+            <td>94</td>
+            <td>73</td>
+          </tr>
+          <tr>
+            <td>M</td>
+            <td>41</td>
+            <td>92</td>
+            <td>74</td>
+            <td>98</td>
+            <td>74</td>
+          </tr>
+          <tr>
+            <td>L</td>
+            <td>42.5</td>
+            <td>98</td>
+            <td>80</td>
+            <td>104</td>
+            <td>75.5</td>
+          </tr>
+          <tr>
+            <td>XL</td>
+            <td>44</td>
+            <td>104</td>
+            <td>86</td>
+            <td>110</td>
+            <td>77</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="modal-fit-note">
+        This shirt is cut oversized. If you are between sizes, size down.<br>
+        Model is 175 cm and wears size S.
+      </div>
+    </div>
+  </div>
 
   <script>
     function selectSize(button) {
@@ -537,6 +661,22 @@
       document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
     }
+
+    function openModal() {
+      document.getElementById('sizeModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('sizeModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOnOverlay(e) {
+      if (e.target === document.getElementById('sizeModal')) closeModal();
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   </script>
 </body>
 </html>
