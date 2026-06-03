@@ -15,10 +15,85 @@
     .logo-container { text-align: center; }
     .logo-container img { height: 40px; }
     .nav-right .shipping-info { font-size: 10px; color: #8a8a8a; letter-spacing: 1px; }
+
     main { margin-top: 90px; padding: 60px 40px; }
-    .product-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1400px; margin: 0 auto; }
-    .product-images { display: flex; flex-direction: column; gap: 20px; }
-    .product-images img { width: 100%; height: auto; border: 1px solid #000; }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* IMAGE GALLERY */
+    .product-images {
+      display: flex;
+      flex-direction: row;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .thumbnail-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-shrink: 0;
+      width: 72px;
+    }
+
+    .thumbnail {
+      width: 72px;
+      height: 90px;
+      object-fit: cover;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.2s ease;
+    }
+
+    .thumbnail.active { opacity: 1; }
+    .thumbnail:hover { opacity: 0.85; }
+
+    .main-image-wrap {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #000;
+    }
+
+    .main-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: opacity 0.25s ease;
+    }
+
+    .main-image-wrap img.fade { opacity: 0; }
+
+    /* arrow buttons */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(237, 232, 219, 0.85);
+      border: none;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #3a3a3a;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+
+    .arrow:hover { background: rgba(237, 232, 219, 1); }
+    .arrow-prev { left: 10px; }
+    .arrow-next { right: 10px; }
+
+    /* PRODUCT Premium cotton fabric<br>Structured collar design<br>Button-front closure<br>Long sleeves with button cuffs<br>Tailored fit silhouette */
     .product-details { position: sticky; top: 120px; height: fit-content; background: #fefdfb; border: 1px solid #000; padding: 50px 40px; }
     .product-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 25px; color: #3a3a3a; }
     .product-subtitle { font-size: 13px; color: #6a6a6a; margin-bottom: 30px; line-height: 1.9; letter-spacing: 0; }
@@ -43,6 +118,8 @@
     .accordion-content { font-size: 12px; color: #6a6a6a; line-height: 2; letter-spacing: 0; padding-bottom: 18px; }
     .size-guide-link { display: inline-block; margin-top: 6px; font-size: 11px; color: #3a3a3a; letter-spacing: 1px; text-transform: uppercase; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; background: none; border: none; padding: 0; font-family: 'Avenir', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif; font-weight: 500; transition: opacity 0.2s; }
     .size-guide-link:hover { opacity: 0.5; }
+
+    /* MODAL */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
     .modal-overlay.active { display: flex; }
     .modal { background: #fefdfb; border: 1px solid #000; max-width: 640px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 50px 44px; position: relative; }
@@ -58,9 +135,15 @@
     .size-table tr:last-child td { border-bottom: none; }
     .size-table tr:hover td { background: #faf8f4; }
     .modal-fit-note { margin-top: 24px; font-size: 11px; color: #aaa; line-height: 1.8; padding-top: 20px; border-top: 1px solid #e3ddce; }
+
+    /* INSPIRATION */
     .story-section { margin-top: 60px; padding: 80px 40px; border-top: 1px solid #d4cfc2; background: #e3ddce; }
     .story-container { max-width: 1200px; margin: 0 auto; }
     .story-image { width: 100%; height: auto; border: 1px solid #000; display: block; }
+
+    /* 
+        <div class="related-item"><a href="shirt-01.html"><div class="related-item-image"><img src="images/shirt-01/main.jpg" alt="Shirt 01"></div><div class="related-item-info"><h3>Shirt 01</h3><p>A man's tailor shirt, perfected for the woman who owns the room. Simple in design, yet unforgettable in effect.</p><p class="price">€ 120</p></div></a></div>
+        <div class="related-item"><a href="shirt-02.html"><div class="related-item-image"><img src="images/shirt-02/main.jpg" alt="Shirt 02"></div><div class="related-item-info"><h3>Shirt 02</h3><p>Refined in every detail, effortless in wear. A contemporary silhouette that needs nothing added and nothing taken away.</p><p class="price">€ 95</p></div></a></div> */
     .related-products { margin-top: 60px; padding: 80px 40px; background: #ede8db; }
     .related-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.5rem; font-weight: 300; letter-spacing: 3px; margin-bottom: 50px; text-align: center; color: #3a3a3a; }
     .related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; max-width: 1000px; margin: 0 auto; }
@@ -74,8 +157,25 @@
     .related-item h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-bottom: 12px; color: #3a3a3a; }
     .related-item p { font-size: 12px; color: #6a6a6a; line-height: 1.8; margin-bottom: 15px; }
     .related-item .price { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.1rem; font-weight: 400; color: #3a3a3a; }
-    @media (max-width: 1024px) { .product-container { grid-template-columns: 1fr; gap: 40px; } .product-details { position: relative; top: 0; } .related-grid { grid-template-columns: 1fr; } }
-    @media (max-width: 768px) { header { padding: 20px 25px; flex-direction: column; gap: 15px; } .logo-container { order: -1; } main { margin-top: 140px; padding: 40px 20px; } .product-details { padding: 30px 25px; } .product-title { font-size: 1.5rem; } .story-section, .related-products { padding: 60px 20px; } .nav-left, .nav-right { font-size: 10px; gap: 12px; } .nav-right .shipping-info { display: none; } .modal { padding: 40px 24px; } }
+
+    @media (max-width: 1024px) {
+      .product-container { grid-template-columns: 1fr; gap: 40px; }
+      .product-details { position: relative; top: 0; }
+      .related-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      header { padding: 20px 25px; flex-direction: column; gap: 15px; }
+      .logo-container { order: -1; }
+      main { margin-top: 140px; padding: 40px 20px; }
+      .product-details { padding: 30px 25px; }
+      .product-title { font-size: 1.5rem; }
+      .story-section, .related-products { padding: 60px 20px; }
+      .nav-left, .nav-right { font-size: 10px; gap: 12px; }
+      .nav-right .shipping-info { display: none; }
+      .modal { padding: 40px 24px; }
+      .thumbnail-col { width: 54px; }
+      .thumbnail { width: 54px; height: 68px; }
+    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
@@ -95,21 +195,28 @@
       <a href="#cart">Cart</a>
     </nav>
   </header>
+
   <main>
     <div class="product-container">
+
       <div class="product-images">
-        <img src="images/shirt-03/main.jpg" alt="Shirt 03 - Main">
-        <img src="images/shirt-03/detail.jpg" alt="Shirt 03 - Detail">
-        <img src="images/shirt-03/styled.jpg" alt="Shirt 03 - Styled">
+        <div class="thumbnail-col">
+          <img class="thumbnail active" src="images/shirt-03/main.jpg" onclick="goTo(0)" alt="View 1">
+<img class="thumbnail" src="images/shirt-03/detail.jpg" onclick="goTo(1)" alt="View 2">
+<img class="thumbnail" src="images/shirt-03/styled.jpg" onclick="goTo(2)" alt="View 3">
+        </div>
+        <div class="main-image-wrap">
+          <button class="arrow arrow-prev" onclick="changeImage(-1)">&#8592;</button>
+          <img id="mainImg" src="images/shirt-03/main.jpg" alt="Shirt 03">
+          <button class="arrow arrow-next" onclick="changeImage(1)">&#8594;</button>
+        </div>
       </div>
+
       <div class="product-details">
         <h1 class="product-title">Shirt 03</h1>
         <p class="product-subtitle">The most considered of the three. Shirt 03 is where structure meets stillness — an architectural cut that holds its shape and commands a room without raising its voice. For the woman who chooses deliberately.</p>
         <div class="feeling-tags">
-          <span class="feeling-tag">Sculptural</span>
-          <span class="feeling-tag">Timeless</span>
-          <span class="feeling-tag">Architectural</span>
-          <span class="feeling-tag">Bold</span>
+          <span class="feeling-tag">Sculptural</span><span class="feeling-tag">Timeless</span><span class="feeling-tag">Architectural</span><span class="feeling-tag">Bold</span>
         </div>
         <div class="size-section">
           <label class="size-label">Size</label>
@@ -142,29 +249,23 @@
         </div>
       </div>
     </div>
+
     <div class="story-section">
       <div class="story-container">
         <img src="images/shirt-03/inspiration.jpg" alt="Inspiration" class="story-image">
       </div>
     </div>
+
     <div class="related-products">
       <h2 class="related-title">Continue Exploring</h2>
       <div class="related-grid">
-        <div class="related-item">
-          <a href="shirt-01.html">
-            <div class="related-item-image"><img src="images/shirt-01/main.jpg" alt="Shirt 01"></div>
-            <div class="related-item-info"><h3>Shirt 01</h3><p>A man's tailor shirt, perfected for the woman who owns the room. Simple in design, yet unforgettable in effect.</p><p class="price">€ 120</p></div>
-          </a>
-        </div>
-        <div class="related-item">
-          <a href="shirt-02.html">
-            <div class="related-item-image"><img src="images/shirt-02/main.jpg" alt="Shirt 02"></div>
-            <div class="related-item-info"><h3>Shirt 02</h3><p>Refined in every detail, effortless in wear. A contemporary silhouette that needs nothing added and nothing taken away.</p><p class="price">€ 95</p></div>
-          </a>
-        </div>
+        
+        <div class="related-item"><a href="shirt-01.html"><div class="related-item-image"><img src="images/shirt-01/main.jpg" alt="Shirt 01"></div><div class="related-item-info"><h3>Shirt 01</h3><p>A man's tailor shirt, perfected for the woman who owns the room. Simple in design, yet unforgettable in effect.</p><p class="price">€ 120</p></div></a></div>
+        <div class="related-item"><a href="shirt-02.html"><div class="related-item-image"><img src="images/shirt-02/main.jpg" alt="Shirt 02"></div><div class="related-item-info"><h3>Shirt 02</h3><p>Refined in every detail, effortless in wear. A contemporary silhouette that needs nothing added and nothing taken away.</p><p class="price">€ 95</p></div></a></div>
       </div>
     </div>
   </main>
+
   <div class="modal-overlay" id="sizeModal" onclick="closeModalOnOverlay(event)">
     <div class="modal">
       <button class="modal-close" onclick="closeModal()">×</button>
@@ -183,9 +284,37 @@
       <div class="modal-fit-note">This shirt is cut oversized. If you are between sizes, size down.<br>Model is 175 cm and wears size S.</div>
     </div>
   </div>
+
   <script>
-    function selectSize(button) { document.querySelectorAll('.size-option').forEach(btn => btn.classList.remove('selected')); button.classList.add('selected'); }
-    function toggleAccordion(trigger) { const item = trigger.closest('.accordion-item'); const isOpen = item.classList.contains('open'); document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open')); if (!isOpen) item.classList.add('open'); }
+    const images = ["images/shirt-03/main.jpg", "images/shirt-03/detail.jpg", "images/shirt-03/styled.jpg"];
+    let current = 0;
+
+    function goTo(index) {
+      const mainImg = document.getElementById('mainImg');
+      const thumbs = document.querySelectorAll('.thumbnail');
+      mainImg.classList.add('fade');
+      setTimeout(() => {
+        current = (index + images.length) % images.length;
+        mainImg.src = images[current];
+        mainImg.classList.remove('fade');
+        thumbs.forEach((t, i) => t.classList.toggle('active', i === current));
+      }, 200);
+    }
+
+    function changeImage(dir) { goTo(current + dir); }
+
+    function selectSize(button) {
+      document.querySelectorAll('.size-option').forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+    }
+
+    function toggleAccordion(trigger) {
+      const item = trigger.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
     function openModal() { document.getElementById('sizeModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
     function closeModal() { document.getElementById('sizeModal').classList.remove('active'); document.body.style.overflow = ''; }
     function closeModalOnOverlay(e) { if (e.target === document.getElementById('sizeModal')) closeModal(); }
