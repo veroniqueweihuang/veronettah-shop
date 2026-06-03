@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veronetta H.</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Avenir', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #3a3a3a;
+      background: #ede8db;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 25px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(237, 232, 219, 0.95);
+      border-bottom: 1px solid #d4cfc2;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-left a, .nav-right a {
+      text-decoration: none;
+      color: #3a3a3a;
+      transition: opacity 0.3s ease;
+      font-weight: 500;
+    }
+
+    .nav-left a:hover, .nav-right a:hover {
+      opacity: 0.5;
+    }
+
+    .separator {
+      color: #c9c5bd;
+      font-weight: 300;
+    }
+
+    .logo-container {
+      text-align: center;
+    }
+
+    .logo-container img {
+      height: 40px;
+    }
+
+    .nav-right .shipping-info {
+      font-size: 10px;
+      color: #8a8a8a;
+      letter-spacing: 1px;
+    }
+
+    /* HERO SECTION - Art Gallery Style */
+    .hero {
+      height: 100vh;
+      background-image: url('hero.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #3a3a3a;
+      text-align: center;
+      margin-top: 90px;
+      position: relative;
+      background-color: #ddd8ca;
+      border: 1px solid #000;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(237, 232, 219, 0.2), rgba(237, 232, 219, 0.4));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      padding: 0 40px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 4rem;
+      font-weight: 300;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      color: #3a3a3a;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: #3a3a3a;
+      margin: 30px auto;
+    }
+
+    .hero p {
+      font-size: 15px;
+      letter-spacing: 2px;
+      line-height: 1.9;
+      font-weight: 300;
+      color: #5a5a5a;
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* PRODUCT SECTION - Art Gallery Layout */
+    .products-wrapper {
+      padding: 80px 40px;
+      background: #ede8db;
+    }
+
+    .section-intro {
+      max-width: 600px;
+      margin: 0 auto 50px;
+      text-align: center;
+    }
+
+    .section-intro h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+      color: #3a3a3a;
+    }
+
+    .section-intro p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #6a6a6a;
+      letter-spacing: 0.5px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: #fefdfb;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #000;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .product-card a {
+      text-decoration: none;
+      color: #3a3a3a;
+      display: block;
+    }
+
+    .product-image-container {
+      position: relative;
+      overflow: hidden;
+      background: #e3ddce;
+      aspect-ratio: 3/4;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .product-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+      padding: 30px 25px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .product-card:hover .product-overlay {
+      opacity: 1;
+    }
+
+    .product-overlay-text {
+      color: #fff;
+      font-size: 12px;
+      letter-spacing: 1px;
+      font-weight: 300;
+    }
+
+    .product-info {
+      padding: 30px 25px;
+      text-align: left;
+    }
+
+    .product-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 400;
+      margin-bottom: 15px;
+      color: #3a3a3a;
+    }
+
+    .product-name .number {
+      font-size: 1.5rem;
+    }
+
+    .product-description {
+      font-size: 13px;
+      color: #6a6a6a;
+      line-height: 1.7;
+      letter-spacing: 0.3px;
+      margin-bottom: 20px;
+      font-weight: 300;
+      text-align: justify;
+    }
+
+    .product-meta {
+      display: none;
+    }
+
+    .product-price {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      color: #3a3a3a;
+    }
+
+    /* PHILOSOPHY SECTION */
+    .philosophy-section {
+      padding: 100px 60px;
+      background: #e3ddce;
+      border-top: 1px solid #d4cfc2;
+      border-bottom: 1px solid #d4cfc2;
+    }
+
+    .philosophy-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .philosophy-content h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      margin-bottom: 40px;
+      color: #3a3a3a;
+    }
+
+    .philosophy-divider {
+      width: 60px;
+      height: 1px;
+      background: #3a3a3a;
+      margin: 40px auto;
+    }
+
+    .philosophy-content p {
+      font-size: 15px;
+      line-height: 2;
+      color: #5a5a5a;
+      margin-bottom: 25px;
+      letter-spacing: 0.5px;
+      font-weight: 300;
+    }
+
+    .philosophy-content .signature {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      margin-top: 50px;
+      color: #3a3a3a;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .products-wrapper {
+        padding: 60px 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 20px 25px;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .logo-container {
+        order: -1;
+      }
+
+      .nav-left, .nav-right {
+        font-size: 10px;
+        gap: 12px;
+      }
+
+      .nav-right .shipping-info {
+        display: none;
+      }
+
+      .brand-name {
+        font-size: 1.2rem;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .products-wrapper {
+        padding: 40px 20px;
+      }
+
+      .philosophy-section {
+        padding: 60px 25px;
+      }
+
+      .hero {
+        margin-top: 140px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+        letter-spacing: 4px;
+      }
+
+      .hero p {
+        font-size: 13px;
+      }
+
+      .section-intro h2,
+      .philosophy-content h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <nav class="nav-left">
+      <a href="#shop">Collection</a>
+      <span class="separator">⸺</span>
+      <a href="#philosophy">Philosophy</a>
+    </nav>
+    
+    <div class="logo-container">
+      <a href="#">
+        <img src="logo.png" alt="Veronetta H. Logo">
+      </a>
+    </div>
+    
+    <nav class="nav-right">
+      <span class="shipping-info">Free shipping in EU</span>
+      <span class="separator">⸺</span>
+      <a href="#cart">Cart</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <p style="font-size: 12px; letter-spacing: 2px; opacity: 0.5; font-style: normal; text-transform: uppercase;">Hero Image</p>
+    </div>
+  </section>
+
+  <!-- PRODUCT GRID -->
+  <section class="products-wrapper" id="shop">
+    <div class="section-intro">
+      <h2>The Collection</h2>
+      <p>Three interpretations of the essential white shirt. Each with its own character, its own story to tell.</p>
+    </div>
+
+    <div class="products">
+      <div class="product-card">
+        <a href="shirt-01.html">
+          <div class="product-image-container">
+            <img src="shirt-01.jpg" alt="Shirt 01" class="product-image">
+            <div class="product-overlay">
+              <div class="product-overlay-text">Liberal · Handsome · Feminine · Chic</div>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">shirt <span class="number">01</span></h3>
+            <p class="product-description">A man's tailor shirt, perfected for the woman who owns the room. The subtle, structured cut inspires your everyday narrative, moving seamlessly from boardroom to bar, holiday to happening. Simple in design, yet unforgettable in effect.</p>
+            <p class="product-price">€ 120</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="product-card">
+        <a href="shirt-02.html">
+          <div class="product-image-container">
+            <img src="shirt-02.jpg" alt="Shirt 02" class="product-image">
+            <div class="product-overlay">
+              <div class="product-overlay-text">Refined · Elegant · Contemporary · Effortless</div>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">shirt <span class="number">02</span></h3>
+            <p class="product-description">Contemporary sophistication for the discerning individual. A silhouette that speaks of quiet confidence and understated luxury. Every detail refined, every line intentional.</p>
+            <p class="product-price">€ 95</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="product-card">
+        <a href="shirt-03.html">
+          <div class="product-image-container">
+            <img src="shirt-03.jpg" alt="Shirt 03" class="product-image">
+            <div class="product-overlay">
+              <div class="product-overlay-text">Sculptural · Timeless · Architectural · Bold</div>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">shirt <span class="number">03</span></h3>
+            <p class="product-description">A statement in simplicity. Exceptional fabric meets architectural precision. This is the piece that transforms an outfit into a moment, a day into a memory.</p>
+            <p class="product-price">€ 150</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
